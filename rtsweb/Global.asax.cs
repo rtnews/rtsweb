@@ -7,6 +7,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using System.IO;
+
+using rtsweb.Models;
 
 namespace rtsweb
 {
@@ -17,7 +20,19 @@ namespace rtsweb
             // 在应用程序启动时运行的代码
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            HomeRepository.Instance();
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+#if !DEBUG
+            if (Context.Request.FilePath == "/")
+            {
+                Context.RewritePath("index.html");
+            }
+#endif
         }
     }
 }

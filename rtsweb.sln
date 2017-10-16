@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rtsweb", "rtsweb\rtsweb.csproj", "{EF7167FF-4F33-4C51-A2C4-9D536FEDBDE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rts.core", "rts.core\rts.core.csproj", "{6A1311C4-A8AA-406D-A1CB-4E774EB60A39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EF7167FF-4F33-4C51-A2C4-9D536FEDBDE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF7167FF-4F33-4C51-A2C4-9D536FEDBDE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF7167FF-4F33-4C51-A2C4-9D536FEDBDE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A1311C4-A8AA-406D-A1CB-4E774EB60A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1311C4-A8AA-406D-A1CB-4E774EB60A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1311C4-A8AA-406D-A1CB-4E774EB60A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1311C4-A8AA-406D-A1CB-4E774EB60A39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
