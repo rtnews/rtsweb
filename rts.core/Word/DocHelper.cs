@@ -74,7 +74,7 @@ namespace rts.core
                         {
                             using (Bitmap bitmap = new Bitmap(image, 529, 281))
                             {
-                                var t = nDir + "page_i.png";
+                                var t = nDir + "/page_i.png";
                                 bitmap.Save(t, ImageFormat.Png);
                             }
                         }
@@ -91,7 +91,7 @@ namespace rts.core
             for (int i = 0; i < document.PageCount; i++)
             {
                 saveOptions.PageIndex = i;
-                var t = string.Format(@"page_{0}.png", i);
+                var t = string.Format(@"/page_{0}.png", i);
                 t = nDir + t;
                 using (var stream = new MemoryStream())
                 {
