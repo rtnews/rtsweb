@@ -20,6 +20,22 @@ namespace rtsweb.Controllers
             return ToJsonValue(value);
         }
 
+        [HttpGet]
+        public HttpResponseMessage GetNoticeList()
+        {
+            var respository = NoticeRepository.Instance();
+            string value = respository.GetStringValue();
+            return ToJsonValue(value);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetGlobList()
+        {
+            var respository = GlobRepository.Instance();
+            string value = respository.GetStringValue();
+            return ToJsonValue(value);
+        }
+
         HttpResponseMessage ToJsonValue(Object nObject, HttpStatusCode nHttpStatusCode)
         {
             String value_;

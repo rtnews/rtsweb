@@ -24,6 +24,11 @@ namespace rts.core
             return collection.Find(new BsonDocument()).Skip(skip).Limit(take).ToList();
         }
 
+        protected T1 QueryOne()
+        {
+            return collection.Find(new BsonDocument()).FirstOrDefault();
+        }
+
         protected bool InsertOne(T1 entity)
         {
             try

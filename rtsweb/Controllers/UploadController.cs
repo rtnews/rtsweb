@@ -8,6 +8,7 @@ using System.IO;
 using rtsweb.Models;
 using rts.core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace rtsweb.Controllers
 {
@@ -21,7 +22,35 @@ namespace rtsweb.Controllers
             var repository = HomeRepository.Instance();
             repository.InsertNews(imageNews);
 
-            return JsonConvert.SerializeObject(imageNews);
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
+        }
+
+        [HttpPost]
+        public string UploadNoticeNews(HttpPostedFileBase file)
+        {
+            var imageNews = UploadNews(file);
+
+            var repository = NoticeRepository.Instance();
+            repository.InsertNews(imageNews);
+
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
+        }
+
+        [HttpPost]
+        public string UploadGlobNews(HttpPostedFileBase file)
+        {
+            var imageNews = UploadNews(file);
+
+            var repository = GlobRepository.Instance();
+            repository.InsertNews(imageNews);
+
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
         }
 
         ImageNews UploadNews(HttpPostedFileBase file)

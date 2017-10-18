@@ -17,8 +17,10 @@ namespace rtsweb.Controllers
         [HttpPost]
         public HttpResponseMessage Login([FromBody]LoginRequest nLoginRequest)
         {
-            if ((nLoginRequest.email == "admin@123.com")
-                && (nLoginRequest.password == "1234"))
+            var respository = UserRespository.Instance();
+
+            if ((nLoginRequest.email == respository.UserInfo.Name)
+                && (nLoginRequest.password == respository.UserInfo.Password))
             {
                 string value_ = nLoginRequest.email + nLoginRequest.password;
 

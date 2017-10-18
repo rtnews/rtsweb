@@ -115,11 +115,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Repository\GlobRepository.cs" />
     <Compile Include="Models\Login\LoginRequest.cs" />
     <Compile Include="Models\Login\LoginResponse.cs" />
+    <Compile Include="Models\Repository\NoticeRepository.cs" />
     <Compile Include="Models\Repository\HomeRepository.cs" />
     <Compile Include="Models\ImageNews\ImageNews.cs" />
     <Compile Include="Models\Repository\NewsRespository.cs" />
+    <Compile Include="Models\User\UserInfo.cs" />
+    <Compile Include="Models\User\UserRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

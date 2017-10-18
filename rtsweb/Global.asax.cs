@@ -23,6 +23,9 @@ namespace rtsweb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             HomeRepository.Instance();
+            NoticeRepository.Instance();
+            GlobRepository.Instance();
+            UserRespository.Instance();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
