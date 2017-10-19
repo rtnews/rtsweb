@@ -5,6 +5,7 @@ using System.Web;
 
 using rts.core;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace rtsweb.Models
 {
@@ -21,7 +22,9 @@ namespace rtsweb.Models
 
         public string GetStringValue()
         {
-            return JsonConvert.SerializeObject(mImageNews);
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            return JsonConvert.SerializeObject(mImageNews, Formatting.Indented, timeConverter);
         }
 
         public List<ImageNews> GetValue()

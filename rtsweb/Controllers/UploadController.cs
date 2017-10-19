@@ -23,7 +23,7 @@ namespace rtsweb.Controllers
             repository.InsertNews(imageNews);
 
             IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
-            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
         }
 
@@ -36,12 +36,12 @@ namespace rtsweb.Controllers
             repository.InsertNews(imageNews);
 
             IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
-            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
         }
 
         [HttpPost]
-        public string UploadGlobNews(HttpPostedFileBase file)
+        public string UploadGlobalNews(HttpPostedFileBase file)
         {
             var imageNews = UploadNews(file);
 
@@ -49,7 +49,7 @@ namespace rtsweb.Controllers
             repository.InsertNews(imageNews);
 
             IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
-            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm";
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
         }
 
