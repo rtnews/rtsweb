@@ -22,7 +22,21 @@ namespace rtsweb.Models
 
         public bool DeleteNews(string nId)
         {
-            return (this.DeleteOne(nId) > 0);
+            Guid id = Guid.Parse(nId);
+
+            if (this.DeleteOne(nId) > 0)
+            {
+                for (int i = 0; i < mImageNews.Count; ++i)
+                {
+                    if (id == mImageNews[i].Id)
+                    {
+                        mImageNews.RemoveAt(i);
+                        break;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
         public string GetStringValue()
@@ -39,7 +53,7 @@ namespace rtsweb.Models
 
         void LoadTop()
         {
-            mImageNews = this.QueryTop(0, 20);
+            mImageNews = this.QueryTop(0, 50);
         }
 
         public NewsRespository()
