@@ -20,6 +20,11 @@ namespace rtsweb.Models
             }
         }
 
+        public bool DeleteNews(string nId)
+        {
+            return (this.DeleteOne(nId) > 0);
+        }
+
         public string GetStringValue()
         {
             IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();

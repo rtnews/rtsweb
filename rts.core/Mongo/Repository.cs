@@ -56,6 +56,18 @@ namespace rts.core
             return update.ModifiedCount == 1;
         }
 
+        protected long DeleteOne(string nId)
+        {
+            return collection.DeleteOne(
+                x => x.Id == Guid.Parse(nId)).DeletedCount;
+        }
+
+        protected long DeleteOne(Guid nId)
+        {
+            return collection.DeleteOne(
+                x => x.Id == nId).DeletedCount;
+        }
+
         protected long DeleteOne(T1 entity)
         {
             return collection.DeleteOne(

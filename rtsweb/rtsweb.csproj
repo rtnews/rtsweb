@@ -115,6 +115,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageNews\NewsDeleteRequest.cs" />
     <Compile Include="Models\Repository\GlobRepository.cs" />
     <Compile Include="Models\Login\LoginRequest.cs" />
     <Compile Include="Models\Login\LoginResponse.cs" />

@@ -13,6 +13,13 @@ namespace rtsweb.Controllers
 {
     public class NewsController : ApiController
     {
+        [HttpPost]
+        public HttpResponseMessage DeleteHomeNews([FromBody]NewsDeleteRequest nNewDelete)
+        {
+            var respository = HomeRepository.Instance();
+            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
+        }
+
         [HttpGet]
         public HttpResponseMessage GetHomeList()
         {
@@ -21,12 +28,26 @@ namespace rtsweb.Controllers
             return ToJsonValue(value);
         }
 
+        [HttpPost]
+        public HttpResponseMessage DeleteNoticeNews([FromBody]NewsDeleteRequest nNewDelete)
+        {
+            var respository = NoticeRepository.Instance();
+            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
+        }
+
         [HttpGet]
         public HttpResponseMessage GetNoticeList()
         {
             var respository = NoticeRepository.Instance();
             string value = respository.GetStringValue();
             return ToJsonValue(value);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage DeleteGlobNews([FromBody]NewsDeleteRequest nNewDelete)
+        {
+            var respository = GlobRepository.Instance();
+            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
         }
 
         [HttpGet]
