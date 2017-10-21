@@ -24,6 +24,11 @@ namespace rts.core
             return collection.Find(new BsonDocument()).Skip(skip).Limit(take).ToList();
         }
 
+        protected List<T1> QueryAll()
+        {
+            return collection.Find(new BsonDocument()).ToList();
+        }
+
         protected T1 QueryOne()
         {
             return collection.Find(new BsonDocument()).FirstOrDefault();

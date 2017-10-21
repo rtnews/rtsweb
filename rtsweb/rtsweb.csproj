@@ -111,11 +111,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ImageNews\NewsDeleteRequest.cs" />
+    <Compile Include="Models\NewsTmp\NewsTmpRepository.cs" />
+    <Compile Include="Models\NewsTmp\NewsTmp.cs" />
     <Compile Include="Models\Repository\GlobRepository.cs" />
     <Compile Include="Models\Login\LoginRequest.cs" />
     <Compile Include="Models\Login\LoginResponse.cs" />
@@ -139,7 +142,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Upload\" />
+    <Folder Include="Upload\ImageNews\" />
+    <Folder Include="Upload\Template\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\rts.core\rts.core.csproj">
