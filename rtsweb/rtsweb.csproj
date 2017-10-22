@@ -110,12 +110,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\DepartController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Depart\DepartRequest.cs" />
+    <Compile Include="Models\Depart\Depart.cs" />
+    <Compile Include="Models\Depart\DepartRepository.cs" />
     <Compile Include="Models\ImageNews\NewsDeleteRequest.cs" />
     <Compile Include="Models\NewsTmp\NewsTmpRepository.cs" />
     <Compile Include="Models\NewsTmp\NewsTmp.cs" />
