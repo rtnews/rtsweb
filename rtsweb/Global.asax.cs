@@ -35,12 +35,6 @@ namespace rtsweb
             {
                 Context.RewritePath("index.html");
             }
-            if (!Directory.Exists("Upload"))
-            {
-                Directory.CreateDirectory("Upload");
-                Directory.CreateDirectory("Upload/Temploate");
-                Directory.CreateDirectory("Upload/ImageNews");
-            }
 #endif
         }
     }

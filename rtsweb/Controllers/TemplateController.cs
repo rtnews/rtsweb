@@ -2,10 +2,12 @@
 using rtsweb.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace rtsweb.Controllers
@@ -16,7 +18,15 @@ namespace rtsweb.Controllers
         public HttpResponseMessage DeleteNewsTmp([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = NewsTmpRepository.Instance();
-            return ToJsonValue(respository.DeleteNewsTmp(nNewDelete.Id));
+            if (respository.DeleteNewsTmp(nNewDelete.Id))
+            {
+                var dir = HostingEnvironment.MapPath("~/Upload/NewsTmp/");
+                dir += nNewDelete.Name;
+                var directoryInfo = new DirectoryInfo(dir);
+                directoryInfo.Delete(true);
+                return ToJsonValue(true);
+            }
+            return ToJsonValue(false);
         }
 
         [HttpGet]

@@ -3,11 +3,14 @@ using Newtonsoft.Json.Converters;
 using rtsweb.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using System.Web.Routing;
+using System.Web.Hosting;
 
 namespace rtsweb.Controllers
 {
@@ -17,7 +20,15 @@ namespace rtsweb.Controllers
         public HttpResponseMessage DeleteHomeNews([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = HomeRepository.Instance();
-            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
+            if (respository.DeleteNews(nNewDelete.Id))
+            {
+                var dir = HostingEnvironment.MapPath("~/Upload/ImageNews/");
+                dir += nNewDelete.Name;
+                var directoryInfo = new DirectoryInfo(dir);
+                directoryInfo.Delete(true);
+                return ToJsonValue(true);
+            }
+            return ToJsonValue(false);
         }
 
         [HttpGet]
@@ -32,7 +43,15 @@ namespace rtsweb.Controllers
         public HttpResponseMessage DeleteNoticeNews([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = NoticeRepository.Instance();
-            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
+            if (respository.DeleteNews(nNewDelete.Id))
+            {
+                var dir = HostingEnvironment.MapPath("~/Upload/ImageNews/");
+                dir += nNewDelete.Name;
+                var directoryInfo = new DirectoryInfo(dir);
+                directoryInfo.Delete(true);
+                return ToJsonValue(true);
+            }
+            return ToJsonValue(false);
         }
 
         [HttpGet]
@@ -47,7 +66,15 @@ namespace rtsweb.Controllers
         public HttpResponseMessage DeleteGlobNews([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = GlobRepository.Instance();
-            return ToJsonValue(respository.DeleteNews(nNewDelete.Id));
+            if (respository.DeleteNews(nNewDelete.Id))
+            {
+                var dir = HostingEnvironment.MapPath("~/Upload/ImageNews/");
+                dir += nNewDelete.Name;
+                var directoryInfo = new DirectoryInfo(dir);
+                directoryInfo.Delete(true);
+                return ToJsonValue(true);
+            }
+            return ToJsonValue(false);
         }
 
         [HttpGet]
