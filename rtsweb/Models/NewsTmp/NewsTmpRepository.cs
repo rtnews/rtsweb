@@ -57,10 +57,10 @@ namespace rtsweb.Models
 
         public NewsTmpRepository()
         {
+            this.GetCollection();
+
             mNewsTmps = new List<NewsTmp>();
             mNewsTmps = this.QueryAll();
-
-            this.GetCollection();
         }
 
         List<NewsTmp> mNewsTmps;
