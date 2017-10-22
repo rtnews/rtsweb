@@ -29,17 +29,15 @@ namespace rtsweb.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage UploadHomeNews(HttpPostedFileBase file)
+        public string UploadHomeNews(HttpPostedFileBase file)
         {
             var imageNews = UploadNews(file);
 
             var repository = HomeRepository.Instance();
             repository.InsertNews(imageNews);
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-            //IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
-            //timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-            //return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
-            //return JsonConvert.SerializeObject(imageNews);
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            return JsonConvert.SerializeObject(imageNews, Formatting.Indented, timeConverter);
         }
 
         [HttpPost]
