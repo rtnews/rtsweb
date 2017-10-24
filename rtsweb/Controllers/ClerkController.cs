@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using rtsweb.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +10,10 @@ using System.Web.Http;
 
 namespace rtsweb.Controllers
 {
-    public class DepartController : ApiController
+    public class ClerkController : ApiController
     {
         [HttpPost]
-        public HttpResponseMessage AddDepart([FromBody]DepartRequest nDepartRequest)
+        public HttpResponseMessage addClerk([FromBody]DepartRequest nDepartRequest)
         {
             var respository = DepartRepository.Instance();
 
@@ -27,24 +26,10 @@ namespace rtsweb.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage DeleteDepart([FromBody]NewsDeleteRequest nNewDelete)
+        public HttpResponseMessage DeleteClerk([FromBody]NewsDeleteRequest nNewDelete)
         {
-            var respository = DepartRepository.Instance();
-            return ToJsonValue(respository.DeleteDepart(nNewDelete.Id));
-        }
-
-        [HttpGet]
-        public HttpResponseMessage GetDepartList()
-        {
-            var departListRespone = new DepartListRespone();
-
-            var departs = DepartRepository.Instance();
-            var clerks = ClerkRepository.Instance();
-
-            departListRespone.Departs = departs.GetValue();
-            departListRespone.Clerks = clerks.GetValue();
-
-            return ToJsonValue(departListRespone);
+            var respository = ClerkRepository.Instance();
+            return ToJsonValue(respository.DeleteClerk(nNewDelete.Id));
         }
 
         HttpResponseMessage ToJsonValue(Object nObject, HttpStatusCode nHttpStatusCode)
