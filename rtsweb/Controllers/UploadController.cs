@@ -16,6 +16,25 @@ namespace rtsweb.Controllers
     public class UploadController : Controller
     {
         [HttpPost]
+        public string UploadClerk(ClerkRequest clerkRequest, HttpPostedFileBase file)
+        {
+            var name = UploadClerkPng(file);
+
+            Clerk clerk = new Clerk();
+            clerk.Depart = clerkRequest.Depart;
+            clerk.Identifier = clerkRequest.Identifier;
+            clerk.Name = clerkRequest.Name;
+            clerk.Time = name;
+
+            var repository = ClerkRepository.Instance();
+            repository.InsertClerk(clerk);
+
+            IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+            timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            return JsonConvert.SerializeObject(clerk, Formatting.Indented, timeConverter);
+        }
+
+        [HttpPost]
         public string UploadNewsTmp(HttpPostedFileBase file)
         {
             var newsTmp = UploadTemplate(file);
@@ -106,6 +125,15 @@ namespace rtsweb.Controllers
             newTmp.Count = doc2Png.Pages;
 
             return newTmp;
+        }
+
+        string UploadClerkPng(HttpPostedFileBase file)
+        {
+            var name = DateTime.Now.ToString("yyyyMMddHHmmss");
+            var path = name + ".png";
+            path = Path.Combine(Request.MapPath("~/Upload/Clerk"), path);
+            file.SaveAs(path);
+            return name;
         }
     }
 }

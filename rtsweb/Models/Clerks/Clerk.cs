@@ -26,5 +26,11 @@ namespace rtsweb.Models
             get;
             set;
         }
+
+        public string Time
+        {
+            get;
+            set;
+        }
     }
 }
