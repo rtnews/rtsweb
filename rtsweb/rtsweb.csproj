@@ -150,6 +150,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Upload\Clerk\" />
     <Folder Include="Upload\ImageNews\" />
     <Folder Include="Upload\NewsTmp\" />
   </ItemGroup>
