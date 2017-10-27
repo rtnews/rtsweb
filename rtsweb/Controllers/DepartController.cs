@@ -14,6 +14,15 @@ namespace rtsweb.Controllers
     public class DepartController : ApiController
     {
         [HttpPost]
+        public HttpResponseMessage ChangeDutyTime([FromBody]DepartDutyTime nDepartDutyTime)
+        {
+            var respository = DepartRepository.Instance();
+            bool change = respository.ChangeDutyTime(nDepartDutyTime.Identifier, nDepartDutyTime.DutyTime);
+
+            return this.ToJsonValue(change);
+        }
+
+        [HttpPost]
         public HttpResponseMessage AddDepart([FromBody]DepartRequest nDepartRequest)
         {
             var respository = DepartRepository.Instance();
@@ -21,6 +30,7 @@ namespace rtsweb.Controllers
             Depart depart = new Depart();
             depart.Identifier = nDepartRequest.Identifier;
             depart.Name = nDepartRequest.Name;
+            depart.DutyTime = DateTime.Now;
             respository.InsertDepart(depart);
 
             return this.ToJsonValue(depart);

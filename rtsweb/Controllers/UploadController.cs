@@ -23,8 +23,9 @@ namespace rtsweb.Controllers
             Clerk clerk = new Clerk();
             clerk.Depart = clerkRequest.Depart;
             clerk.Identifier = clerkRequest.Identifier;
+            clerk.Phone = clerkRequest.Phone;
             clerk.Name = clerkRequest.Name;
-            clerk.Time = name;
+            clerk.Icon = name;
 
             var repository = ClerkRepository.Instance();
             repository.InsertClerk(clerk);

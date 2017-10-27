@@ -2,10 +2,12 @@
 using rtsweb.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace rtsweb.Controllers
@@ -13,23 +15,17 @@ namespace rtsweb.Controllers
     public class ClerkController : ApiController
     {
         [HttpPost]
-        public HttpResponseMessage addClerk([FromBody]DepartRequest nDepartRequest)
-        {
-            var respository = DepartRepository.Instance();
-
-            Depart depart = new Depart();
-            depart.Identifier = nDepartRequest.Identifier;
-            depart.Name = nDepartRequest.Name;
-            respository.InsertDepart(depart);
-
-            return this.ToJsonValue(depart);
-        }
-
-        [HttpPost]
         public HttpResponseMessage DeleteClerk([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = ClerkRepository.Instance();
-            return ToJsonValue(respository.DeleteClerk(nNewDelete.Id));
+            if (respository.DeleteClerk(nNewDelete.Id))
+            {
+                var dir = HostingEnvironment.MapPath("~/Upload/Clerk/");
+                dir += nNewDelete.Name; dir += ".png";
+                File.Delete(dir);
+                return ToJsonValue(true);
+            }
+            return ToJsonValue(false);
         }
 
         HttpResponseMessage ToJsonValue(Object nObject, HttpStatusCode nHttpStatusCode)

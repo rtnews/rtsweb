@@ -18,4 +18,12 @@ namespace rtsweb.Models
 
         public List<Clerk> Clerks { get; set; }
     }
+
+    public class DepartDutyTime
+    {
+        public string Identifier { get; set; }
+
+        public string DutyTime { get; set; }
+    }
+    
 }

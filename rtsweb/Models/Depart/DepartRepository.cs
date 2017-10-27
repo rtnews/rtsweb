@@ -10,6 +10,18 @@ namespace rtsweb.Models
 {
     public class DepartRepository : Repository<DepartRepository, Depart>
     {
+        public bool ChangeDutyTime(string nId, string nTime)
+        {
+            DateTime time = Convert.ToDateTime(nTime);
+            Depart depart = this.GetDepart(nId);
+            if  (null == depart)
+            {
+                return false;
+            }
+            depart.DutyTime = Convert.ToDateTime(nTime);
+            return this.UpdateOne(depart);
+        }
+
         public void InsertDepart(Depart nDepart)
         {
             if (this.InsertOne(nDepart))
@@ -47,6 +59,19 @@ namespace rtsweb.Models
         protected override string GetRepositoryName()
         {
             return "DepartRepository";
+        }
+
+        public Depart GetDepart(string nId)
+        {
+            Guid id = Guid.Parse(nId);
+            foreach (var i in mDeparts)
+            {
+                if (i.Id == id)
+                {
+                    return i;
+                }
+            }
+            return null;
         }
 
         public List<Depart> GetValue()

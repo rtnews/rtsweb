@@ -20,5 +20,11 @@ namespace rtsweb.Models
             get;
             set;
         }
+
+        public DateTime DutyTime
+        {
+            get;
+            set;
+        }
     }
 }

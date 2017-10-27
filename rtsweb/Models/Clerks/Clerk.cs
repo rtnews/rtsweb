@@ -27,7 +27,13 @@ namespace rtsweb.Models
             set;
         }
 
-        public string Time
+        public string Phone
+        {
+            get;
+            set;
+        }
+
+        public string Icon
         {
             get;
             set;
