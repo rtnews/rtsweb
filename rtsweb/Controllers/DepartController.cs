@@ -41,11 +41,16 @@ namespace rtsweb.Controllers
         {
             var respository = DepartRepository.Instance();
             var respository1 = ClerkRepository.Instance();
-            if (respository1.CanDeleteDepart(nNewDelete.Name))
+            var respository2 = DpartRepository.Instance();
+            if (!respository1.CanDeleteDepart(nNewDelete.Name))
             {
-                return ToJsonValue(respository.DeleteDepart(nNewDelete.Id));
+                return ToJsonValue(false);
             }
-            return ToJsonValue(false);
+            if (!respository2.CanDeleteDepart(nNewDelete.Name))
+            {
+                return ToJsonValue(false);
+            }
+            return ToJsonValue(respository.DeleteDepart(nNewDelete.Id));
         }
 
         [HttpGet]
@@ -54,9 +59,11 @@ namespace rtsweb.Controllers
             var departListRespone = new DepartListRespone();
 
             var departs = DepartRepository.Instance();
+            var dparts = DpartRepository.Instance();
             var clerks = ClerkRepository.Instance();
 
             departListRespone.Departs = departs.GetValue();
+            departListRespone.Dparts = dparts.GetValue();
             departListRespone.Clerks = clerks.GetValue();
 
             return ToJsonValue(departListRespone);

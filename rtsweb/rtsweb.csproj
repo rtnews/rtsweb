@@ -112,6 +112,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ClerkController.cs" />
     <Compile Include="Controllers\DepartController.cs" />
+    <Compile Include="Controllers\DpartController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Models\Depart\DepartRequest.cs" />
     <Compile Include="Models\Depart\Depart.cs" />
     <Compile Include="Models\Depart\DepartRepository.cs" />
+    <Compile Include="Models\Dpart\Dpart.cs" />
+    <Compile Include="Models\Dpart\DpartRepository.cs" />
+    <Compile Include="Models\Dpart\DpartRequest.cs" />
     <Compile Include="Models\ImageNews\NewsDeleteRequest.cs" />
     <Compile Include="Models\NewsTmp\NewsTmpRepository.cs" />
     <Compile Include="Models\NewsTmp\NewsTmp.cs" />

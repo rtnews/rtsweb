@@ -16,6 +16,8 @@ namespace rtsweb.Models
     {
         public List<Depart> Departs { get; set; }
 
+        public List<Dpart> Dparts { get; set; }
+
         public List<Clerk> Clerks { get; set; }
     }
 
