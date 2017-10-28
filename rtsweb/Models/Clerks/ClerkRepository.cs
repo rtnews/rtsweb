@@ -10,6 +10,18 @@ namespace rtsweb.Models
 {
     public class ClerkRepository : Repository<ClerkRepository, Clerk>
     {
+        public bool CanDeleteDepart(string nName)
+        {
+            foreach (var i in mClerks)
+            {
+                if (i.Depart == nName)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public void InsertClerk(Clerk nClerk)
         {
             if (this.InsertOne(nClerk))

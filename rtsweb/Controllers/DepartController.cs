@@ -40,7 +40,12 @@ namespace rtsweb.Controllers
         public HttpResponseMessage DeleteDepart([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = DepartRepository.Instance();
-            return ToJsonValue(respository.DeleteDepart(nNewDelete.Id));
+            var respository1 = ClerkRepository.Instance();
+            if (respository1.CanDeleteDepart(nNewDelete.Name))
+            {
+                return ToJsonValue(respository.DeleteDepart(nNewDelete.Id));
+            }
+            return ToJsonValue(false);
         }
 
         [HttpGet]
