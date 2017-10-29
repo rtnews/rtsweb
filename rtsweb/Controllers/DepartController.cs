@@ -30,7 +30,7 @@ namespace rtsweb.Controllers
             Depart depart = new Depart();
             depart.Identifier = nDepartRequest.Identifier;
             depart.Name = nDepartRequest.Name;
-            depart.DutyTime = DateTime.Now;
+            depart.DutyTime = DateTime.Now.ToString("yyyy/MM/dd");
             respository.InsertDepart(depart);
 
             return this.ToJsonValue(depart);

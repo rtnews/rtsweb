@@ -21,7 +21,7 @@ namespace rtsweb.Models
             set;
         }
 
-        public DateTime DutyTime
+        public string DutyTime
         {
             get;
             set;

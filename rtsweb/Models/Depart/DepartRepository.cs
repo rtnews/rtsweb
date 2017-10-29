@@ -12,13 +12,12 @@ namespace rtsweb.Models
     {
         public bool ChangeDutyTime(string nId, string nTime)
         {
-            DateTime time = Convert.ToDateTime(nTime);
             Depart depart = this.GetDepart(nId);
             if  (null == depart)
             {
                 return false;
             }
-            depart.DutyTime = Convert.ToDateTime(nTime);
+            depart.DutyTime = nTime;
             return this.UpdateOne(depart);
         }
 

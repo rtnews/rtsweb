@@ -55,7 +55,8 @@ namespace rtsweb.Controllers
 
         int GetDepartDuty(Depart nDepart)
         {
-            var timeSpan = DateTime.Now - nDepart.DutyTime;
+            var dataTime = Convert.ToDateTime(nDepart.DutyTime);
+            var timeSpan = DateTime.Now - dataTime;
             return timeSpan.Days;
         }
 
