@@ -13,21 +13,18 @@ namespace rtsweb.Models
     {
         public void InsertNews(NewsTmp nNewsTmp)
         {
-            if (this.InsertOne(nNewsTmp))
-            {
-                mNewsTmps.Add(nNewsTmp);
-            }
+            this.Insert(nNewsTmp);
+
+            mNewsTmps.Add(nNewsTmp);
         }
 
         public bool DeleteNewsTmp(string nId)
         {
-            Guid id = Guid.Parse(nId);
-
-            if (this.DeleteOne(nId) > 0)
+            if ( this.Delete(nId) )
             {
                 for (int i = 0; i < mNewsTmps.Count; ++i)
                 {
-                    if (id == mNewsTmps[i].Id)
+                    if (nId == mNewsTmps[i].Id)
                     {
                         mNewsTmps.RemoveAt(i);
                         break;
@@ -60,7 +57,7 @@ namespace rtsweb.Models
             this.GetCollection();
 
             mNewsTmps = new List<NewsTmp>();
-            mNewsTmps = this.QueryAll();
+            mNewsTmps = this.FindAll().ToList();
         }
 
         List<NewsTmp> mNewsTmps;

@@ -39,21 +39,18 @@ namespace rtsweb.Models
 
         public void InsertDpart(Dpart nDpart)
         {
-            if (this.InsertOne(nDpart))
-            {
-                mDparts.Add(nDpart);
-            }
+            this.Insert(nDpart);
+
+            mDparts.Add(nDpart);
         }
 
         public bool DeleteDpart(string nId)
         {
-            Guid id = Guid.Parse(nId);
-
-            if (this.DeleteOne(nId) > 0)
+            if ( this.Delete(nId) )
             {
                 for (int i = 0; i < mDparts.Count; ++i)
                 {
-                    if (id == mDparts[i].Id)
+                    if (nId == mDparts[i].Id)
                     {
                         mDparts.RemoveAt(i);
                         break;
@@ -86,7 +83,7 @@ namespace rtsweb.Models
             this.GetCollection();
 
             mDparts = new List<Dpart>();
-            mDparts = this.QueryAll();
+            mDparts = this.FindAll().ToList();
         }
 
         List<Dpart> mDparts;

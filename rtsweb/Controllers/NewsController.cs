@@ -17,6 +17,13 @@ namespace rtsweb.Controllers
     public class NewsController : ApiController
     {
         [HttpPost]
+        public HttpResponseMessage UpdateHomeRead([FromBody]NewsUpdateRequest nNewsUpdate)
+        {
+            var respository = HomeRepository.Instance();
+            return ToJsonValue(respository.UpdateRead(nNewsUpdate.Id));
+        }
+
+        [HttpPost]
         public HttpResponseMessage DeleteHomeNews([FromBody]NewsDeleteRequest nNewDelete)
         {
             var respository = HomeRepository.Instance();

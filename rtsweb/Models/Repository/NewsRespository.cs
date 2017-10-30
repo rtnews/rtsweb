@@ -12,23 +12,27 @@ namespace rtsweb.Models
     public abstract class NewsRespository<T> : Repository<T, ImageNews>
         where T : new()
     {
+        public bool UpdateRead(string nId)
+        {
+            var update = Updater.Inc<int>(i => i.Read, 1);
+
+            return this.Update(nId, update);
+        }
+
         public void InsertNews(ImageNews nImageNews)
         {
-            if ( this.InsertOne(nImageNews) )
-            {
-                mImageNews.Add(nImageNews);
-            }
+            this.Insert(nImageNews);
+
+            mImageNews.Add(nImageNews);
         }
 
         public bool DeleteNews(string nId)
         {
-            Guid id = Guid.Parse(nId);
-
-            if (this.DeleteOne(nId) > 0)
+            if ( this.Delete(nId) )
             {
                 for (int i = 0; i < mImageNews.Count; ++i)
                 {
-                    if (id == mImageNews[i].Id)
+                    if (nId == mImageNews[i].Id)
                     {
                         mImageNews.RemoveAt(i);
                         break;
@@ -53,7 +57,7 @@ namespace rtsweb.Models
 
         void LoadTop()
         {
-            mImageNews = this.QueryTop(0, 50);
+            mImageNews = this.FindAll(0, 50).ToList();
         }
 
         public NewsRespository()

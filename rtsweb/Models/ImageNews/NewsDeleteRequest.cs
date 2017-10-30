@@ -10,4 +10,9 @@ namespace rtsweb.Models
         public string Id { get; set; }
         public string Name { get; set; }
     }
+
+    public class NewsUpdateRequest
+    {
+        public string Id { get; set; }
+    }
 }

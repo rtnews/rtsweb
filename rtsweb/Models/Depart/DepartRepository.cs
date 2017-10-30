@@ -18,26 +18,26 @@ namespace rtsweb.Models
                 return false;
             }
             depart.DutyTime = nTime;
-            return this.UpdateOne(depart);
+
+            var update = Updater.Set<string>(i => i.DutyTime, nTime);
+
+            return this.Update(nId, update);
         }
 
         public void InsertDepart(Depart nDepart)
         {
-            if (this.InsertOne(nDepart))
-            {
-                mDeparts.Add(nDepart);
-            }
+            this.Insert(nDepart);
+
+            mDeparts.Add(nDepart);
         }
 
         public bool DeleteDepart(string nId)
         {
-            Guid id = Guid.Parse(nId);
-
-            if (this.DeleteOne(nId) > 0)
+            if ( this.Delete(nId) )
             {
                 for (int i = 0; i < mDeparts.Count; ++i)
                 {
-                    if (id == mDeparts[i].Id)
+                    if (nId == mDeparts[i].Id)
                     {
                         mDeparts.RemoveAt(i);
                         break;
@@ -62,10 +62,9 @@ namespace rtsweb.Models
 
         public Depart GetDepart(string nId)
         {
-            Guid id = Guid.Parse(nId);
             foreach (var i in mDeparts)
             {
-                if (i.Id == id)
+                if (i.Id == nId)
                 {
                     return i;
                 }
@@ -83,7 +82,7 @@ namespace rtsweb.Models
             this.GetCollection();
 
             mDeparts = new List<Depart>();
-            mDeparts = this.QueryAll();
+            mDeparts = this.FindAll().ToList();
         }
 
         List<Depart> mDeparts;

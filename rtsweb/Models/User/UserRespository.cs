@@ -17,7 +17,7 @@ namespace rtsweb.Models
 
         void InitUserInfo()
         {
-            UserInfo = this.QueryOne();
+            UserInfo = this.First();
 
             if (null == UserInfo)
             {
@@ -25,7 +25,7 @@ namespace rtsweb.Models
 
                 UserInfo.Name = "admin@rtnews.com";
                 UserInfo.Password = "rtnews123";
-                this.InsertOne(UserInfo);
+                this.Insert(UserInfo);
             }
         }
 

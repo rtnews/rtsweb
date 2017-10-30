@@ -24,21 +24,18 @@ namespace rtsweb.Models
 
         public void InsertClerk(Clerk nClerk)
         {
-            if (this.InsertOne(nClerk))
-            {
-                mClerks.Add(nClerk);
-            }
+            this.Insert(nClerk);
+
+            mClerks.Add(nClerk);
         }
 
         public bool DeleteClerk(string nId)
         {
-            Guid id = Guid.Parse(nId);
-
-            if (this.DeleteOne(nId) > 0)
+            if ( this.Delete(nId) )
             {
                 for (int i = 0; i < mClerks.Count; ++i)
                 {
-                    if (id == mClerks[i].Id)
+                    if (nId == mClerks[i].Id)
                     {
                         mClerks.RemoveAt(i);
                         break;
@@ -71,7 +68,7 @@ namespace rtsweb.Models
             this.GetCollection();
 
             mClerks = new List<Clerk>();
-            mClerks = this.QueryAll();
+            mClerks = this.FindAll().ToList();
         }
 
         List<Clerk> mClerks;
