@@ -16,6 +16,36 @@ namespace rtsweb.Controllers
 {
     public class NewsController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage GetStartRep()
+        {
+            var startRespone = new StartRepRespone();
+
+            var respository = HomeRepository.Instance();
+            startRespone.HomeList = respository.GetValue();
+
+            var respository1 = GlobRepository.Instance();
+            startRespone.News0List = respository1.GetValue();
+
+            var respository2 = NoticeRepository.Instance();
+            startRespone.News1List = respository2.GetValue();
+
+            var respository3 = DpartRepository.Instance();
+            var respository4 = DepartRepository.Instance();
+
+            var dutyList = new List<Dpart>();
+            foreach (var i in respository4.GetValue())
+            {
+                var index = this.GetDepartDuty(i);
+                var dpart = respository3.GetDepartDuty(index, i.Name);
+                dutyList.Add(dpart);
+            }
+
+            startRespone.Dparts = dutyList;
+
+            return ToJsonValue(startRespone);
+        }
+
         [HttpPost]
         public HttpResponseMessage UpdateHomeRead([FromBody]NewsUpdateRequest nNewsUpdate)
         {
@@ -92,6 +122,13 @@ namespace rtsweb.Controllers
             return ToJsonValue(value);
         }
 
+        int GetDepartDuty(Depart nDepart)
+        {
+            var dataTime = Convert.ToDateTime(nDepart.DutyTime);
+            var timeSpan = DateTime.Now - dataTime;
+            return timeSpan.Days;
+        }
+
         HttpResponseMessage ToJsonValue(Object nObject, HttpStatusCode nHttpStatusCode)
         {
             String value_;
@@ -101,7 +138,9 @@ namespace rtsweb.Controllers
             }
             else
             {
-                value_ = JsonConvert.SerializeObject(nObject);
+                IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+                timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                value_ = JsonConvert.SerializeObject(nObject, Formatting.Indented, timeConverter);
             }
             HttpResponseMessage result_ = new HttpResponseMessage();
             result_.StatusCode = nHttpStatusCode;
@@ -118,7 +157,9 @@ namespace rtsweb.Controllers
             }
             else
             {
-                value_ = JsonConvert.SerializeObject(nObject);
+                IsoDateTimeConverter timeConverter = new IsoDateTimeConverter();
+                timeConverter.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+                value_ = JsonConvert.SerializeObject(nObject, Formatting.Indented, timeConverter);
             }
             HttpResponseMessage result_ = new HttpResponseMessage();
             result_.Content = new StringContent(value_, Encoding.GetEncoding("UTF-8"), "application/json");

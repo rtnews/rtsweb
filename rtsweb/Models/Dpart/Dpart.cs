@@ -45,5 +45,17 @@ namespace rtsweb.Models
             get;
             set;
         }
+
+        public string Phone
+        {
+            get;
+            set;
+        }
+
+        public string Icon
+        {
+            get;
+            set;
+        }
     }
 }

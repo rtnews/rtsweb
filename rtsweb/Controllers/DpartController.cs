@@ -24,7 +24,10 @@ namespace rtsweb.Controllers
             {
                 var index = this.GetDepartDuty(i);
                 var dpart = respository1.GetDepartDuty(index, i.Name);
-                dutyList.Add(dpart);
+                if (null != dpart)
+                {
+                    dutyList.Add(dpart);
+                }
             }
 
             return ToJsonValue(dutyList);
@@ -40,6 +43,8 @@ namespace rtsweb.Controllers
             dpart.ClerkId = nDpartRequest.ClerkId;
             dpart.Name = nDpartRequest.Name;
             dpart.Depart = nDpartRequest.Depart;
+            dpart.Phone = nDpartRequest.Phone;
+            dpart.Icon = nDpartRequest.Icon;
 
             respository.InsertDpart(dpart);
 

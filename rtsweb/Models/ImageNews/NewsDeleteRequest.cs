@@ -15,4 +15,12 @@ namespace rtsweb.Models
     {
         public string Id { get; set; }
     }
+
+    public class StartRepRespone
+    {
+        public List<ImageNews> HomeList { get; set; }
+        public List<ImageNews> News0List { get; set; }
+        public List<ImageNews> News1List { get; set; }
+        public List<Dpart> Dparts { get; set; }
+    }
 }
