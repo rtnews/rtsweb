@@ -38,7 +38,7 @@ namespace rtsweb.Models
         {
             this.Insert(nImageNews);
 
-            mImageNews.Add(nImageNews);
+            mImageNews.Insert(0, nImageNews);
         }
 
         public bool DeleteNews(string nId)
