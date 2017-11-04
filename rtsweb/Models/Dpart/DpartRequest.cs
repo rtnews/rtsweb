@@ -5,6 +5,11 @@ using System.Web;
 
 namespace rtsweb.Models
 {
+    public class DpartRepResponse
+    {
+        public List<Dpart> Dparts { get; set; }
+    }
+
     public class DpartRequest
     {
         public int Identifier

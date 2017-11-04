@@ -12,6 +12,11 @@ namespace rtsweb.Models
     public abstract class NewsRespository<T> : Repository<T, ImageNews>
         where T : new()
     {
+        public List<ImageNews> GetPageInfo(int nPageId)
+        {
+            return this.FindAll(nPageId, 30).ToList();
+        }
+
         public bool UpdateRead(string nId)
         {
             var update = Updater.Inc<int>(i => i.Read, 1);
@@ -57,7 +62,7 @@ namespace rtsweb.Models
 
         void LoadTop()
         {
-            mImageNews = this.FindAll(0, 50).ToList();
+            mImageNews = this.FindAll(0, 30).ToList();
         }
 
         public NewsRespository()

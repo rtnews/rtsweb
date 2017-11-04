@@ -11,6 +11,11 @@ namespace rtsweb.Models
         public string Name { get; set; }
     }
 
+    public class NewsPageRequest
+    {
+        public int PageId { get; set; }
+    }
+
     public class NewsUpdateRequest
     {
         public string Id { get; set; }
@@ -22,5 +27,10 @@ namespace rtsweb.Models
         public List<ImageNews> News0List { get; set; }
         public List<ImageNews> News1List { get; set; }
         public List<Dpart> Dparts { get; set; }
+    }
+
+    public class HomeRepRespone
+    {
+        public List<ImageNews> ImageNewsList { get; set; }
     }
 }

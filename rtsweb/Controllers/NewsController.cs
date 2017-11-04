@@ -38,7 +38,10 @@ namespace rtsweb.Controllers
             {
                 var index = this.GetDepartDuty(i);
                 var dpart = respository3.GetDepartDuty(index, i.Name);
-                dutyList.Add(dpart);
+                if (null != dpart)
+                {
+                    dutyList.Add(dpart);
+                }
             }
 
             startRespone.Dparts = dutyList;
@@ -68,12 +71,38 @@ namespace rtsweb.Controllers
             return ToJsonValue(false);
         }
 
+        [HttpPost]
+        public HttpResponseMessage GetHomePage([FromBody]NewsPageRequest nNewsPageRequest)
+        {
+            var respository = HomeRepository.Instance();
+            var imageNews = respository.GetPageInfo(nNewsPageRequest.PageId);
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = imageNews;
+            return ToJsonValue(respone);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetHomeRep()
+        {
+            var respository = HomeRepository.Instance();
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = respository.GetValue();
+            return ToJsonValue(respone);
+        }
+
         [HttpGet]
         public HttpResponseMessage GetHomeList()
         {
             var respository = HomeRepository.Instance();
             string value = respository.GetStringValue();
             return ToJsonValue(value);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UpdateNoticeRead([FromBody]NewsUpdateRequest nNewsUpdate)
+        {
+            var respository = NoticeRepository.Instance();
+            return ToJsonValue(respository.UpdateRead(nNewsUpdate.Id));
         }
 
         [HttpPost]
@@ -91,12 +120,38 @@ namespace rtsweb.Controllers
             return ToJsonValue(false);
         }
 
+        [HttpPost]
+        public HttpResponseMessage GetNoticePage([FromBody]NewsPageRequest nNewsPageRequest)
+        {
+            var respository = NoticeRepository.Instance();
+            var imageNews = respository.GetPageInfo(nNewsPageRequest.PageId);
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = imageNews;
+            return ToJsonValue(respone);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetNoticeRep()
+        {
+            var respository = NoticeRepository.Instance();
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = respository.GetValue();
+            return ToJsonValue(respone);
+        }
+
         [HttpGet]
         public HttpResponseMessage GetNoticeList()
         {
             var respository = NoticeRepository.Instance();
             string value = respository.GetStringValue();
             return ToJsonValue(value);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage UpdateGlobRead([FromBody]NewsUpdateRequest nNewsUpdate)
+        {
+            var respository = NoticeRepository.Instance();
+            return ToJsonValue(respository.UpdateRead(nNewsUpdate.Id));
         }
 
         [HttpPost]
@@ -112,6 +167,25 @@ namespace rtsweb.Controllers
                 return ToJsonValue(true);
             }
             return ToJsonValue(false);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage GetGlobPage([FromBody]NewsPageRequest nNewsPageRequest)
+        {
+            var respository = GlobRepository.Instance();
+            var imageNews = respository.GetPageInfo(nNewsPageRequest.PageId);
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = imageNews;
+            return ToJsonValue(respone);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage GetGlobRep()
+        {
+            var respository = GlobRepository.Instance();
+            var respone = new HomeRepRespone();
+            respone.ImageNewsList = respository.GetValue();
+            return ToJsonValue(respone);
         }
 
         [HttpGet]

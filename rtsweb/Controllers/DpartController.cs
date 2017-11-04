@@ -14,6 +14,28 @@ namespace rtsweb.Controllers
     public class DpartController : ApiController
     {
         [HttpGet]
+        public HttpResponseMessage GetDutyRep()
+        {
+            var respository = DepartRepository.Instance();
+            var respository1 = DpartRepository.Instance();
+
+            var response = new DpartRepResponse();
+            var dutyList = new List<Dpart>();
+            foreach (var i in respository.GetValue())
+            {
+                var index = this.GetDepartDuty(i);
+                var dpart = respository1.GetDepartDuty(index, i.Name);
+                if (null != dpart)
+                {
+                    dutyList.Add(dpart);
+                }
+            }
+            response.Dparts = dutyList;
+
+            return ToJsonValue(response);
+        }
+
+        [HttpGet]
         public HttpResponseMessage GetDutyList()
         {
             var respository = DepartRepository.Instance();

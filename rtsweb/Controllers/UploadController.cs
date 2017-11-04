@@ -10,6 +10,7 @@ using rts.core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Net.Http;
+using System.Drawing;
 
 namespace rtsweb.Controllers
 {
@@ -133,7 +134,9 @@ namespace rtsweb.Controllers
             var name = DateTime.Now.ToString("yyyyMMddHHmmss");
             var path = name + ".png";
             path = Path.Combine(Request.MapPath("~/Upload/Clerk"), path);
-            file.SaveAs(path);
+            var sourceImage = Image.FromStream(file.InputStream);
+            var destImage = ImgHelper.RunZoom(sourceImage, 356, 500);
+            destImage.Save(path);
             return name;
         }
     }
