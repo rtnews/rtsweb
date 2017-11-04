@@ -20,8 +20,18 @@ namespace rtsweb.Models
         public bool UpdateRead(string nId)
         {
             var update = Updater.Inc<int>(i => i.Read, 1);
-
-            return this.Update(nId, update);
+            if (this.Update(nId, update))
+            {
+                foreach (var i in mImageNews)
+                {
+                    if (i.Id == nId)
+                    {
+                        i.Read++;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
         public void InsertNews(ImageNews nImageNews)
